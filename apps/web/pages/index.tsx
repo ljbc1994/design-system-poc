@@ -38,39 +38,32 @@ export default function Web() {
   const [webTokenValues, setWebValues] = useState(webTokens);
   const [nativeTokenValues, setNativeValues] = useState(nativeTokens);
 
-  async function sendTokenFile(tokenFile) {
+  async function sendToken(token) {
     const res = await fetch("/api/tokens", {
       method: "POST",
-      body: JSON.stringify(tokenFile),
+      body: JSON.stringify(token),
     });
-    const json = await res.json();
-    console.log(json);
+    await res.json();
   }
 
   function onUpdateToken(type: "web" | "native") {
     return (name: string, value: string) => {
       switch (type) {
         case "web": {
-          const updated = webTokenValues.map((token) => {
-            if (token.name === name) {
-              return { ...token, value };
-            }
-            return token;
-          });
-
-          setWebValues(updated);
-          sendTokenFile(updated);
+          const updated = webTokenValues.find((token) => {
+            return token.name === name
+          })
+          updated.value = value
+          sendToken(updated);
+          break;
         }
         case "native": {
-          const updated = nativeTokenValues.map((token) => {
-            if (token.name === name) {
-              return { ...token, value };
-            }
-            return token;
+          const updated = nativeTokenValues.find((token) => {
+            return token.name === name
           });
-
-          setNativeValues(updated);
-          sendTokenFile(updated);
+          updated.value = value
+          sendToken(updated);
+          break;
         }
       }
     };
