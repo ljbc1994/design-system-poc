@@ -38,9 +38,9 @@ jobs:
       - name: Create PR 
         uses: peter-evans/create-pull-request@v3
         with:
-          commit-message: "Tokens updated"
-          title: "Design tokens updated"
-          body: "Design tokens have been updated via Figma and need to be reviewed."
+          commit-message: ${{ github.event.client_payload.commit_message }}
+          title: ${{ github.event.client_payload.commit_title }}
+          body: ${{ github.event.client_payload.commit_body }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH_NAME: 'main'
