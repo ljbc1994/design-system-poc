@@ -51,17 +51,17 @@ export default function Web() {
       switch (type) {
         case "web": {
           const updated = webTokenValues.find((token) => {
-            return token.name === name
-          })
-          updated.value = value
+            return token.name === name;
+          });
+          updated.value = value;
           sendToken(updated);
           break;
         }
         case "native": {
           const updated = nativeTokenValues.find((token) => {
-            return token.name === name
+            return token.name === name;
           });
-          updated.value = value
+          updated.value = value;
           sendToken(updated);
           break;
         }
