@@ -1,12 +1,6 @@
 {
   "font_family": {
-    "system": {
-      "value": "sans-serif",
-      "category": "typography"
-    },
-    "custom": {
-      "value": "'Uni Neue', sans-serif",
-      "category": "typography"
-    }
+    "system": { "value": "sans-serif", "category": "typography" },
+    "custom": { "value": "'Uni Neue', sans-serif", "category": "typography" }
   }
 }
