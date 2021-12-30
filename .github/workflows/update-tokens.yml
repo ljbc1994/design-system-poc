@@ -42,6 +42,9 @@ jobs:
         run: 'yarn install'
       - name: Transform design tokens 
         run: 'yarn build'
+      - name: Format tokens
+        run: 'yarn format'
+        working-directory: './'
       # We now create a pull request 
       - name: Create PR 
         uses: peter-evans/create-pull-request@v3

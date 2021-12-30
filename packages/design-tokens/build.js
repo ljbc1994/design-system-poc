@@ -42,8 +42,8 @@ function getStyleDictionaryConfig(platform) {
             destination: "tokens.css",
             format: "css/variables",
             options: {
-                outputReferences: true
-            }
+              outputReferences: true,
+            },
           },
         ],
       },
@@ -115,7 +115,9 @@ StyleDictionaryPackage.registerFormat({
 
             if (options.outputReferences) {
               if (dictionary.usesReference(prop.original.value)) {
-                const reference = dictionary.getReferences(prop.original.value)[0];
+                const reference = dictionary.getReferences(
+                  prop.original.value
+                )[0];
 
                 value = reference.name;
                 return `  --${prop.name}: var(--${value}, ${prop.value});`;
