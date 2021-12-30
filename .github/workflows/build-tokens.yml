@@ -1,0 +1,31 @@
+name: build-tokens
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths-ignore:
+      - '**.md'
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - '**.md' 
+
+jobs:
+
+  build-design-tokens:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+      - name: Set Node.js 
+        uses: actions/setup-node@v1.4.4
+        with:
+          node-version: '14'
+          cache: 'yarn'
+      - name: Install yarn dependencies
+        run: |
+          yarn install
+      - name: Build tokens
+        run: yarn turbo run build
+
