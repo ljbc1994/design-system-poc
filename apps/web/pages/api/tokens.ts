@@ -20,7 +20,7 @@ export default async function handler(req, res) {
         path: `${PACKAGE_SRC}/${body.filePath}`,
       })
 
-      const contents = JSON.parse(Buffer.from(file.data.content, 'base64').toString('utf8'))
+      const contents = JSON.parse(Buffer.from((file.data as any).content, 'base64').toString('utf8'))
       const result = _.update(contents, body.path.concat(['value']).join('.'), () => body.value)
 
       // dispatch updated file to workflow...

@@ -1,10 +1,9 @@
-import webTokens from "design-tokens/dist/web/tokens.json";
-import nativeTokens from "design-tokens/dist/native/tokens.json";
-
+import webTokens from "@tm/design-tokens/dist/web/meta.json";
+import nativeTokens from "@tm/design-tokens/dist/native/meta.json";
 import {
   COLOR_BASE_GRAY_MEDIUM,
   FONT_FAMILY_SYSTEM,
-} from "design-tokens/dist/web/tokens";
+} from "@tm/design-tokens/dist/web/tokens";
 import { useState } from "react";
 
 const TokenDisplay = ({ token, onTokenUpdate }) => (

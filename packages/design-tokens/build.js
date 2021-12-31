@@ -14,13 +14,23 @@ function getStyleDictionaryConfig(platform) {
           },
         ],
       },
+      "web/ts": {
+        transformGroup: "tokens-web-ts",
+        buildPath: "dist/web/",
+        files: [
+          {
+            destination: "tokens.d.ts",
+            format: "typescript/es6-declarations",
+          },
+        ],
+      },
       "web/json": {
         transformGroup: "tokens-web-json",
         buildPath: "dist/web/",
         files: [
           {
-            destination: "tokens.json",
-            format: "json/flat",
+            destination: "meta.json",
+            format: "json/list",
           },
         ],
       },
@@ -58,13 +68,23 @@ function getStyleDictionaryConfig(platform) {
           },
         ],
       },
+      "native/ts": {
+        transformGroup: "tokens-native-ts",
+        buildPath: "dist/native/",
+        files: [
+          {
+            destination: "tokens.d.ts",
+            format: "typescript/es6-declarations",
+          },
+        ],
+      },
       "native/json": {
         transformGroup: "tokens-native-json",
         buildPath: "dist/native/",
         files: [
           {
-            destination: "tokens.json",
-            format: "json/flat",
+            destination: "meta.json",
+            format: "json/list",
           },
         ],
       },
@@ -75,7 +95,7 @@ function getStyleDictionaryConfig(platform) {
 // CUSTOM FORMATS
 
 StyleDictionaryPackage.registerFormat({
-  name: "json/flat",
+  name: "json/list",
   formatter: function (dictionary) {
     return JSON.stringify(dictionary.allProperties, null, 2);
   },
@@ -83,84 +103,46 @@ StyleDictionaryPackage.registerFormat({
 
 // TRANSFORMERS
 
-StyleDictionaryPackage.registerTransform({
-  name: "size/pxToPt",
-  type: "value",
-  matcher: function (prop) {
-    return prop.value.match(/^[\d.]+px$/);
-  },
-  transformer: function (prop) {
-    return prop.value.replace(/px$/, "pt");
-  },
-});
-
-StyleDictionaryPackage.registerTransform({
-  name: "size/pxToDp",
-  type: "value",
-  matcher: function (prop) {
-    return prop.value.match(/^[\d.]+px$/);
-  },
-  transformer: function (prop) {
-    return prop.value.replace(/px$/, "dp");
-  },
-});
-
-StyleDictionaryPackage.registerFormat({
-  name: "css/variables",
-  formatter: function ({ dictionary, options }) {
-    return `:root {
-        ${dictionary.allProperties
-          .map((prop) => {
-            let value = prop.value;
-
-            if (options.outputReferences) {
-              if (dictionary.usesReference(prop.original.value)) {
-                const reference = dictionary.getReferences(
-                  prop.original.value
-                )[0];
-
-                value = reference.name;
-                return `  --${prop.name}: var(--${value}, ${prop.value});`;
-              }
-            }
-            return `  --${prop.name}: ${prop.value};`;
-          })
-          .join("\n")}
-      }`;
-  },
-});
-
 // TRANSFORM GROUPS
 
 StyleDictionaryPackage.registerTransformGroup({
   name: "tokens-web-js",
-  transforms: ["name/cti/constant", "size/px", "color/hex"],
+  transforms: ["name/cti/constant", "size/rem", "color/hex"],
+});
+
+StyleDictionaryPackage.registerTransformGroup({
+  name: "tokens-web-ts",
+  transforms: ["name/cti/constant", "size/rem", "color/hex"],
 });
 
 StyleDictionaryPackage.registerTransformGroup({
   name: "tokens-web-json",
-  transforms: ["attribute/cti", "name/cti/kebab", "size/px", "color/css"],
+  transforms: ["attribute/cti", "name/cti/kebab", "size/rem", "color/css"],
 });
 
 StyleDictionaryPackage.registerTransformGroup({
   name: "tokens-web-scss",
-  transforms: ["name/cti/kebab", "time/seconds", "size/px", "color/css"],
+  transforms: ["name/cti/kebab", "time/seconds", "size/rem", "color/css"],
 });
 
 StyleDictionaryPackage.registerTransformGroup({
   name: "tokens-web-vars",
-  transforms: ["name/cti/kebab", "time/seconds", "size/px", "color/css"],
-  format: "css/variables",
+  transforms: ["name/cti/kebab", "time/seconds", "size/rem", "color/css"],
 });
 
 StyleDictionaryPackage.registerTransformGroup({
   name: "tokens-native-js",
-  transforms: ["name/cti/constant", "size/px", "color/hex"],
+  transforms: ["name/cti/constant", 'size/object', 'color/css'],
+});
+
+StyleDictionaryPackage.registerTransformGroup({
+  name: "tokens-native-ts",
+  transforms: ["name/cti/constant", 'size/object', 'color/css'],
 });
 
 StyleDictionaryPackage.registerTransformGroup({
   name: "tokens-native-json",
-  transforms: ["attribute/cti", "name/cti/camel", "size/pxToPt"],
+  transforms: ["attribute/cti", "name/cti/camel"],
 });
 
 console.log("Build started...");
@@ -175,11 +157,13 @@ console.log("Build started...");
 
   if (platform === "web") {
     StyleDictionary.buildPlatform("web/js");
+    StyleDictionary.buildPlatform("web/ts");
     StyleDictionary.buildPlatform("web/json");
     StyleDictionary.buildPlatform("web/scss");
     StyleDictionary.buildPlatform("web/vars");
   } else if (platform === "native") {
     StyleDictionary.buildPlatform("native/js");
+    StyleDictionary.buildPlatform("native/ts");
     StyleDictionary.buildPlatform("native/json");
   }
 
