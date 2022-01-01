@@ -24,10 +24,12 @@ jobs:
       - name: Install yarn dependencies
         run: |
           yarn install
+      - name: Version package
+        run: |
+          yarn version --patch
       - name: Publish package
-        run: npm publish
+        run: yarn publish
         working-directory: './packages/design-tokens'
-    
 
 
       
