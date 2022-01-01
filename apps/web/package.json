@@ -9,8 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@octokit/rest": "^18.12.0",
     "@ljbc1994/design-tokens": "*",
+    "@octokit/rest": "^18.12.0",
     "lodash": "^4.17.21",
     "next": "12.0.3",
     "react": "17.0.2",
