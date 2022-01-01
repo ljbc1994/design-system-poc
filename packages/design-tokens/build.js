@@ -132,12 +132,12 @@ StyleDictionaryPackage.registerTransformGroup({
 
 StyleDictionaryPackage.registerTransformGroup({
   name: "tokens-native-js",
-  transforms: ["name/cti/constant", 'size/object', 'color/css'],
+  transforms: ["name/cti/constant", "size/object", "color/css"],
 });
 
 StyleDictionaryPackage.registerTransformGroup({
   name: "tokens-native-ts",
-  transforms: ["name/cti/constant", 'size/object', 'color/css'],
+  transforms: ["name/cti/constant", "size/object", "color/css"],
 });
 
 StyleDictionaryPackage.registerTransformGroup({

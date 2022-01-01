@@ -1,9 +1,8 @@
-
 export default async function handler(req, res) {
-    if (req.method === "GET") {
-      const query = req.query
+  if (req.method === "GET") {
+    const query = req.query;
 
-      const svg = `
+    const svg = `
         <svg xmlns="http://www.w3.org/2000/svg" width="800" height="600">
           <g>
             <title>Figma changes</title>
@@ -12,12 +11,12 @@ export default async function handler(req, res) {
             <path transform="rotate(90.7381 401.053 299.973)" id="svg_6" d="m384.55285,299.912l16.50001,-25.4388l16.50001,25.4388l-8.25001,0l0,25.5612l-16.50001,0l0,-25.5612l-8.25001,0z" stroke="#ffffff" fill="#000000"/>
           </g>
         </svg>
-      `
-  
-      res.setHeader('Content-Type', 'image/svg+xml')
-  
-      const imageBuffer = Buffer.from(svg)
-  
-      return res.send(imageBuffer)
-    }
+      `;
+
+    res.setHeader("Content-Type", "image/svg+xml");
+
+    const imageBuffer = Buffer.from(svg);
+
+    return res.send(imageBuffer);
+  }
 }
