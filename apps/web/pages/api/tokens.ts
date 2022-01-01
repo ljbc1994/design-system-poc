@@ -37,14 +37,13 @@ export default async function handler(req, res) {
           // PR data
           commit_title: `Design token (${body.name}) updated to ${body.value}`,
           commit_message: `Token updated for ${body.name} in ${body.filePath}`,
-          commit_body: `
-            # What's changed?
+          commit_body: `# What's changed?
 
-            Design token (${body.name}) has been updated via Figma by @ljbc1994 and needs to be reviewed.
+Design token (${body.name}) has been updated via Figma by @ljbc1994 and needs to be reviewed.
 
-            ## Preview
+## Preview
 
-            <img src="${process.env.WEB_URL}/api/preview?fromColor=${body.value}&toColor=${body.value}" width="800" height="600" />
+<img src="https://${process.env.WEB_URL}/api/preview?fromColor=${body.original.value}&toColor=${body.value}" width="800" height="600" />
           `
         },
       });
