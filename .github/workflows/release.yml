@@ -31,6 +31,7 @@ jobs:
       - name: Version package
         run: |
           yarn version --patch
+        working-directory: './packages/design-tokens'
       - name: Publish package
         run: yarn publish
         working-directory: './packages/design-tokens'
