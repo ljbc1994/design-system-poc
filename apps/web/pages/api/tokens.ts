@@ -43,7 +43,7 @@ Design token (${body.name}) has been updated via Figma by @ljbc1994 and needs to
 
 ## Preview
 
-<img src="https://${process.env.WEB_URL}/api/preview?fromColor=${body.original.value}&toColor=${body.value}" width="800" height="600" />
+<img src="https://${process.env.WEB_URL}/api/preview?fromColor=${encodeURIComponent(body.original.value)}&toColor=${encodeURIComponent(body.value)}" width="800" height="600" />
           `
         },
       });
