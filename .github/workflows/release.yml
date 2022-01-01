@@ -24,9 +24,13 @@ jobs:
       - name: Install yarn dependencies
         run: |
           yarn install
+      - name: Set git creds
+        run: |
+          git config user.email "ljbc94@gmail.com"
+          git config user.name "Louie"
       - name: Version package
         run: |
-          yarn version --patch
+          yarn versixon --patch
       - name: Publish package
         run: yarn publish
         working-directory: './packages/design-tokens'
