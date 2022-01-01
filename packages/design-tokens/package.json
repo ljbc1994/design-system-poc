@@ -1,7 +1,11 @@
 {
-  "name": "@tm/design-tokens",
+  "name": "@ljbc1994/design-tokens",
   "version": "1.0.0",
   "description": "design token concept using figma as single source of truth",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ljbc1994/design-system-poc.git"
+  },
   "main": "./dist/index.js",
   "sideEffects": false,
   "files": [

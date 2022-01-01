@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@octokit/rest": "^18.12.0",
-    "@tm/design-tokens": "*",
+    "@ljbc1994/design-tokens": "*",
     "lodash": "^4.17.21",
     "next": "12.0.3",
     "react": "17.0.2",
