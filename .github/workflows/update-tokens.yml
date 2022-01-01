@@ -11,6 +11,8 @@ defaults:
 
 jobs:
   build:
+    env:
+      PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
     name: Transform Figma design tokens for specific platforms
     runs-on: ubuntu-latest
     steps:

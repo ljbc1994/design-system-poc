@@ -5,14 +5,12 @@ on:
     branches: [ main ]
     paths-ignore:
       - '**.md'
-  push:
-    branches: [ main ]
-    paths-ignore:
-      - '**.md' 
 
 jobs:
 
   build-design-tokens:
+    env:
+      PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
