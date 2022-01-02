@@ -36,6 +36,11 @@ jobs:
         run: npx semantic-release
         working-directory: './packages/design-tokens'
 
+      - name: Install new next yarn dependencies
+        run: |
+          yarn install
+        working-directory: './apps/web'
+
       - name: Build next app
         run: |
           yarn build
