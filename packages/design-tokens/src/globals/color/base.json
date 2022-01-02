@@ -3,7 +3,7 @@
     "base": {
       "gray": {
         "light": { "value": "#CCCCCC" },
-        "medium": { "value": "#777777" },
+        "medium": { "value": "#999977" },
         "dark": { "value": "#111111" }
       },
       "red": { "value": "#FF0000" },
