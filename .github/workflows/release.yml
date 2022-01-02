@@ -28,18 +28,18 @@ jobs:
         run: |
           git config user.email "ljbc94@gmail.com"
           git config user.name "Louie"
-      # 1) USE SEMANTIC RELEASES
-      # 2) AFTER PACKAGE PUSH -> DEPLOY SITE
-      # - name: Version package
-      #   run: |
-      #     yarn version --patch
-      #   working-directory: './packages/design-tokens'
+      
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
         run: npx semantic-release
         working-directory: './packages/design-tokens'
+
+      - name: Build next app
+        run: |
+          yarn build
+        working-directory: './apps/web'
 
       - name: Publish sample app
         uses: netlify/actions/cli@master
