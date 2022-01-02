@@ -40,3 +40,12 @@ jobs:
           PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
         run: npx semantic-release
         working-directory: './packages/design-tokens'
+
+      - name: Publish sample app
+        uses: netlify/actions/cli@master
+        with:
+          args: deploy --dir=apps/web/.next --functions=functions
+          secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
