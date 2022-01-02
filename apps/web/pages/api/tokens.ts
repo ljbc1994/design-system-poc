@@ -41,8 +41,8 @@ export default async function handler(req, res) {
           tokens: JSON.stringify(result),
 
           // PR data
-          commit_title: `Design token (${body.name}) updated to ${body.value}`,
-          commit_message: `Token updated for ${body.name} in ${body.filePath}`,
+          commit_title: `feat: design token (${body.name}) updated to ${body.value}`,
+          commit_message: `feat: token updated for ${body.name} in ${body.filePath}`,
           commit_body: `# What's changed?
 
 Design token (${
