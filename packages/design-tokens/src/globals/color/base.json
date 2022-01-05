@@ -2,7 +2,7 @@
   "color": {
     "base": {
       "gray": {
-        "light": { "value": "#CCCCCC" },
+        "light": { "value": "#cccccc" },
         "medium": { "value": "#999977" },
         "dark": { "value": "#111111" }
       },
